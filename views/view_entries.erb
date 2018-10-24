@@ -1,4 +1,4 @@
 <h1>Your diary entries</h1>
 <% @entries.each do |entry| %>
-<li><%= entry.title %></li>
+<li><a href='/entry/<%= entry.id %>'><%= entry.title %></a></li>
 <% end %>

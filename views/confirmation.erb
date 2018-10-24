@@ -1,5 +1,4 @@
-<h3>New entry created. </h3>
-<p>All entries:</p>
-<% @entries.each do |entry| %>
-<li><%= entry.title %></li>
-<% end %>
+<p>Your entry has been created</p>
+<form action=/new_entry method='get'>
+  <input type='submit' value="Make Another">
+</form>

@@ -29,6 +29,10 @@ class DearDiary < Sinatra::Base
     erb :view_entries
   end
 
+  get '/entry/:id' do
+    @entry = Entry.all.select{ |entry| entry.id == params[:id] }.first
+    erb :entry_id
+  end
 
   run! if app_file == $0
 
