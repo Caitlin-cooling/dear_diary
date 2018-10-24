@@ -5,11 +5,11 @@ require 'pg'
 class DearDiary < Sinatra::Base
 
   get '/' do
-    erb(:index)
+    erb :index
   end
 
   get '/new_entry' do
-    erb(:new_entry)
+    erb :new_entry
   end
 
   post '/new_entry' do
@@ -21,7 +21,12 @@ class DearDiary < Sinatra::Base
 
   get '/confirmation' do
     @entries = Entry.all
-    erb(:confirmation)
+    erb :confirmation
+  end
+
+  get '/view_entries' do
+    @entries = Entry.all
+    erb :view_entries
   end
 
 
