@@ -1,5 +1,19 @@
+require 'pg'
+
 class Entry
+
   def self.all
-    "Monday"
+    if ENV['RACK_ENV'] == 'test'
+      conn = PG.connect(dbname: 'dear_diary_test')
+    else
+      conn = PG.connect(dbname: 'dear_diary')
+    end
+    entries = []
+    result = conn.exec("SELECT * FROM entries")
+    result.each do |entry|
+      entries << entry['content']
+    end
+    entries.join(", ")
   end
+
 end
