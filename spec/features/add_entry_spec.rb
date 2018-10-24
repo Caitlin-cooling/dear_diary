@@ -11,9 +11,9 @@ feature 'New entry' do
 
   scenario 'Can enter new entry' do
     make_new_entry
-    fill_in('entry', with: 'Monday')
+    fill_in('entry', with: 'Test')
     click_button("Done")
     expect(page).to have_content "New entry created"
-    expect(page).to have_content "Monday"
+    expect(page).to have_content "Test"
   end
 end

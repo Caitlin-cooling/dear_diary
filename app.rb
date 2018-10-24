@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative './lib/entry'
+require 'pg'
 
 class DearDiary < Sinatra::Base
 
@@ -12,11 +13,14 @@ class DearDiary < Sinatra::Base
   end
 
   post '/confirm_entry' do
+    entry = params[:entry]
+    connection = PG.connect(dbname: 'dear_diary_test')
+    connection.exec("INSERT INTO entries (content) VALUES('#{entry}')")
     redirect '/confirmation'
   end
 
   get '/confirmation' do
-    @entry = Entry.all
+    @entries = Entry.all
     erb(:confirmation)
   end
 
