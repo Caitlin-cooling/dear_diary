@@ -14,8 +14,7 @@ class DearDiary < Sinatra::Base
 
   post '/confirm_entry' do
     entry = params[:entry]
-    connection = PG.connect(dbname: 'dear_diary_test')
-    connection.exec("INSERT INTO entries (content) VALUES('#{entry}')")
+    Entry.create(entry)
     redirect '/confirmation'
   end
 

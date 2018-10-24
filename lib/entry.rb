@@ -3,7 +3,7 @@ require 'pg'
 class Entry
 
   def self.all
-    if ENV['RACK_ENV'] == 'test'
+   if ENV['RACK_ENV'] == 'test'
       conn = PG.connect(dbname: 'dear_diary_test')
     else
       conn = PG.connect(dbname: 'dear_diary')
@@ -14,6 +14,15 @@ class Entry
       entries << entry['content']
     end
     entries.join(", ")
+  end
+
+  def self.create(content)
+    if ENV['RACK_ENV'] == 'test'
+      conn = PG.connect(dbname: 'dear_diary_test')
+    else
+      conn = PG.connect(dbname: 'dear_diary')
+    end
+    conn.exec("INSERT INTO entries (content) VALUES('#{content}')")
   end
 
 end
