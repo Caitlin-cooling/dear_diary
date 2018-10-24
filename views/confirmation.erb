@@ -1,2 +1,5 @@
-<h3>New entry created</h3>
-<p><%= @entries %></p>
+<h3>New entry created. </h3>
+<p>All entries:</p>
+<% @entries.each do |entry| %>
+<li><%= entry.title %></li>
+<% end %>

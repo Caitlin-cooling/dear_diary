@@ -1,6 +1,10 @@
 <h1>Write a new diary entry</h1>
-<form action=/confirm_entry method='post'>
-  <textarea name='entry' style="width:80%;height:40%;"></textarea>
+<form action=/new_entry method='post'>
+  <h3>Title:</h3>
+  <input type='text' name="title">
+  <br>
+  <h3>Content:</h3>
+  <textarea name='content' style="width:80%;height:40%;"></textarea>
   <br>
   <input type='submit' value="Done">
 </form>

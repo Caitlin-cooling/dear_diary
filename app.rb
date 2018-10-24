@@ -12,9 +12,10 @@ class DearDiary < Sinatra::Base
     erb(:new_entry)
   end
 
-  post '/confirm_entry' do
-    entry = params[:entry]
-    Entry.create(entry)
+  post '/new_entry' do
+    content = params[:content]
+    title = params[:title]
+    Entry.create(title, content)
     redirect '/confirmation'
   end
 

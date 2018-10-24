@@ -2,30 +2,21 @@ require 'entry'
 require 'pg'
 
 describe Entry do
-  describe '#all' do
 
-    before(:each) do
-      conn = PG.connect(dbname: 'dear_diary_test')
-      conn.exec('TRUNCATE entries;')
-    end
-
+  describe '::all' do
     it 'return all entries' do
-      conn = PG.connect(dbname: 'dear_diary_test')
-      conn.exec("INSERT INTO entries (content) VALUES ('Monday');")
-      conn.exec("INSERT INTO entries (content) VALUES ('Tuesday');")
-      conn.exec("INSERT INTO entries (content) VALUES ('Wednesday');")
+      Entry.create("Monday", "Hi")
       entries = Entry.all
-      expect(entries).to include("Monday")
-      expect(entries).to include("Tuesday")
-      expect(entries).to include("Wednesday")
+      expect(entries.first.title).to eq "Monday"
+      expect(entries.first.content).to eq "Hi"
     end
   end
-  describe '#create' do
 
+  describe '::create' do
     it 'should create a new entry in the database' do
-      new_entry = Entry.create("Hi there")
+      new_entry = Entry.create("Test", "Hi there")
       entries = Entry.all
-      expect(entries).to include("Hi there")
+      expect(entries.first.title).to eq "Test"
     end
   end
 end
