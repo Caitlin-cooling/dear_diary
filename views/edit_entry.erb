@@ -1,0 +1,7 @@
+<h1>Edit your entry</h1>
+<form action='/entry/<%= @entry.id %>/edit' method='post'>
+  <input type='text' name='title' value='<%= @entry.title %>'>
+  <input type='text' name='content' value='<%= @entry.content %>'>
+  <input name='_method' type='hidden' value='PATCH'>
+  <input type='submit' value="Submit">
+</form>

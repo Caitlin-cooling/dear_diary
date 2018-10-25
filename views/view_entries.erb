@@ -1,4 +1,12 @@
 <h1>Your diary entries</h1>
 <% @entries.each do |entry| %>
-<li><a href='/entry/<%= entry.id %>'><%= entry.title %></a></li>
+<li><a href='/entry/<%= entry.id %>'><%= entry.title %></a>
+  <form action='/entry/<%= entry.id %>/edit' method='get'>
+    <input type='submit' value="Edit">
+  </form>
+  <form action='/entry/<%= entry.id %>' method='post'>
+    <input name='_method' type='hidden' value='DELETE'>
+    <input type='submit' value="Delete">
+  </form>
+</li>
 <% end %>

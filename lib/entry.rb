@@ -17,6 +17,16 @@ class Entry
     @conn.exec("INSERT INTO entries (title,content) VALUES('#{title}','#{content}')")
   end
 
+  def self.update(id, title, content)
+    find_db
+    @conn.exec("UPDATE entries SET title = '#{title}', content = '#{content}' WHERE id = '#{id}'")
+  end
+
+  def self.delete(id)
+    find_db
+    @conn.exec("DELETE FROM entries WHERE id = '#{id}'")
+  end
+
   def initialize(id, title, content)
     @id = id
     @title = title
