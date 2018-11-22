@@ -3,12 +3,27 @@ ENV['RACK_ENV'] = 'test'
 require 'capybara'
 require 'capybara/rspec'
 require 'sinatra/base'
+require 'simplecov'
+require 'simplecov-console'
 require 'rspec'
 require 'setup_test_database'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
 Capybara.app = DearDiary
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::Console,
+  # Want a nice code coverage website? Uncomment this next line!
+  # SimpleCov::Formatter::HTMLFormatter
+])
+SimpleCov.start
+
+require 'capybara'
+require 'capybara/rspec'
+require 'sinatra/base'
+require 'rspec'
+require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
